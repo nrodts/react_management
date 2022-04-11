@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Customer from './components/Customer';
-import Paper from '@material-ui/core/Paper'
+import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
@@ -12,7 +12,7 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
   root: {
     width: '100%',
-    marginTop: theme.spacing.unit *3,
+    marginTop: theme.spacing.unit * 3,
     overflowX: "auto"
   },
   table: {
@@ -47,9 +47,10 @@ const customers = [{
 
 class App extends Component {
   render() {
+    const { classes } = this.props;
     return (
-      <div>
-        <Table>
+      <Paper className={classes.root}>
+        <Table classesName={classes.table}>
           <TableHead>
             <TableRow>
               <TableCell>번호</TableCell>
@@ -64,9 +65,9 @@ class App extends Component {
           {customers.map(c => { return (<Customer key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job}/> ); } ) }
           </TableBody>
         </Table>
-      </div>
+      </Paper>
     );
   }
 }
 
-export default App;
+export default withStyles(styles)(App);
